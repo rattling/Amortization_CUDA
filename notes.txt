@@ -1,0 +1,37 @@
+Ok so need to get the line from origin to end.
+
+Once we have that need to check if point is below line.
+
+If it is, replace it with point on line i.e. replace the y coordinate with the one from the line.
+
+Ok this might be quite easy then.
+
+1. Calculate m, slope of line from origin to cum vestment.
+2. For each x (timepoint) check y1=mx.  If its greater replace y with y1 Now you  have the points on the line.
+3. Calculate all the slopes for n-1 segments so that's just y(n) - y(n-1)/x(n)-x(n-1)
+4. Above will be a slope vector (or col3 of same matrix).  Get the tranche number from the diffs.
+slope(n)=slope(n-)+math.ceil(diff) or something similar.
+
+Just do it for one case first and see if it works.  Also gotta add in the calcs at the start.
+
+  Then can worry about how to do it for many.  It might be passing in as is and chopping up the matrix as you go in some way. But the chopping would need to happen before anything else..
+I don't know how this would be handled. Otherwise might transpose....so 1 line per customer.  
+Then you still want to 
+
+reshapedf.columns = ['test_'+"_".join(i) for i in zip(reshapedf.columns.get_level_values(0),
+                                                      (reshapedf.columns.get_level_values(1))]
+
+
+trans = mydf.pivot_table(index=["GrantID"], columns=["TrancheID"])
+newNames =[]
+for i in range(0,trans.shape[1]):
+	newNames.append(trans.columns.get_level_values(0)[i]+str(trans.columns.get_level_values(1)[i]))
+trans.columns=newNames
+
+
+newnames=["Days1", "Days2", "Days3", "Days4", "ShareValue1", "ShareValue2", "ShareValue3", "ShareValue4", "VestShares1", "VestShares2", "VestShares3", "VestShares4"]
+reshapedf.columns=newnames
+
+reshapedf.columns[1]=newnames[1]
+
+

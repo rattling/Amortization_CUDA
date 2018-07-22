@@ -1,0 +1,13 @@
+Add logic back in to run Numba stuff by param
+
+Want to be able to run on pc with few changes (probaly just have to has out the 4 numba lines
+
+S should be a parameter
+
+Add in comments
+
+I don't think I need to pass the two result matrices into Numba, can just create them in there? But no biggie
+
+Want to compare timings to pc also
+
+And then write it up
